@@ -1,0 +1,46 @@
+<html> 
+  <head> 
+    <title>Locadora CRUD</title> 
+  </head> 
+  <body> 
+    <h1>Locadora CRUD</h1> 
+    <table> 
+      <thead> 
+        <tr> 
+          <th>ID</th> 
+          <th>Nome do filme</th> 
+          <th>Opções</th> 
+        </tr> 
+      </thead> 
+      <tbody> 
+        {% for row in data %} 
+        <tr> 
+          <td>{{ row[0] }}</td> 
+          <td>{{ row[1] }}</td> 
+          <td> 
+            <form action="/update" method="post"> 
+              <input type="hidden" name="id" value="{{ row[0] }}"> 
+              <input type="text" name="name" value="{{ row[1] }}"> 
+              <input type="submit" value="Atualizar"> 
+            </form> 
+            <form action="/delete" method="post"> 
+              <input type="hidden" name="id" value="{{ row[0] }}"> 
+              <input type="submit" value="Deletar"> 
+            </form> 
+          </td> 
+        </tr> 
+        {% endfor %} 
+      </tbody> 
+    </table> 
+    <h2>Adicionar filme:</h2> 
+    <form action="/create" method="post"> 
+      <input type="text" name="filme_nome" placeholder="Nome"> 
+      <input type="submit" value="Adicionar"> 
+    </form> 
+
+    <h2>Logout:</h2> 
+    <form action="/logout" method="post"> 
+      <input type="submit" value="Logout"> 
+    </form> 
+  </body> 
+</html> 
